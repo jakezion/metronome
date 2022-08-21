@@ -1,0 +1,41 @@
+{
+  "name": "metronome",
+  "version": "1.0.0",
+  "description": "A React-based metronome that takes button inputs to dictate BPM. ",
+  "source": "/public/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakezion/metronome.git"
+  },
+  "keywords": [
+    "javascript",
+    "metronome",
+    "tap-tempo",
+    "react",
+    "babel",
+    "parcel",
+    "webapp"
+  ],
+  "author": "Jake Sumner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakezion/metronome/issues"
+  },
+  "homepage": "https://github.com/jakezion/metronome#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "parcel": "^2.7.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0"
+  }
+}
