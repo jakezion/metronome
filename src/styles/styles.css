@@ -1,0 +1,16 @@
+:root {
+--background: #ffffff;
+    --background-accent: #000000;
+    --settings-size: 60px;
+    --text-colour: #000000;
+    --border: 1px solid #cccccc;
+    --border-radius: 8px;
+    --speed: 500ms;
+}
+
+footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 3rem;
+}
+
