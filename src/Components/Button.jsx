@@ -1,5 +1,5 @@
 import React from 'react';
-import {IoMusicalNoteSharp} from "react-icons/io5";
+import {IoMusicalNoteSharp, IoRefreshOutline} from "react-icons/io5";
 
 //sets initial state of the counter, and timestamps for inital and current taps
 const initialState = {
@@ -18,7 +18,7 @@ export default class TempoButton extends React.Component {
     //updates the tapcount by 1, initialises the initial tap and gets the current tap after each press
     updateTap(event) {
         this.setState({
-            countTap: ++this.state.countTap || 0,
+            countTap: this.state.countTap + 1,
             initialTap: this.state.initialTap || event.timeStamp,
             currentTap: event.timeStamp
         })
@@ -39,12 +39,16 @@ export default class TempoButton extends React.Component {
 
         return (
             <>
-                <CalculateBPM stateData={stateData}/>
-                <div className="button-group">
-                    <button onClick={this.updateTap.bind(this)} className="tap-tempo"><IoMusicalNoteSharp/></button>
-                    <button onClick={this.resetTap.bind(this)} className="reset" disabled={this.state.countTap <= 0}>
-                        Reset bpm
-                    </button>
+                <div className="button-bar">
+                    <CalculateBPM stateData={stateData}/>
+                    <div className="button-group">
+                        {/*TODO add pause button*/}
+                        <button onClick={this.updateTap.bind(this)} className="tap-tempo"><IoMusicalNoteSharp/></button>
+                        <button onClick={this.resetTap.bind(this)} className="reset"
+                                disabled={this.state.countTap <= 0}>
+                            <IoRefreshOutline/>
+                        </button>
+                    </div>
                 </div>
             </>
         );
@@ -71,7 +75,7 @@ class CalculateBPM extends React.Component {
             <div className="value-label">
                 {
                     this.props.stateData.countTap >= 4 ?
-                    <span id="value-label">{this.calculateBPM()}</span> : <span>&nbsp;</span>
+                        <span id="value-label">{this.calculateBPM()}</span> : <></>
                 }
                 <span className="bpm-label">&nbsp;bpm</span>
             </div>
