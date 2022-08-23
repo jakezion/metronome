@@ -25,7 +25,7 @@ export default class TempoButton extends React.Component {
     }
 
     //resets values back to default
-    resetTap(event) {
+    resetTap() {
         this.setState(initialState);
     }
 
