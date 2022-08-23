@@ -1,16 +1,247 @@
 :root {
---background: #ffffff;
-    --background-accent: #000000;
-    --settings-size: 60px;
-    --text-colour: #000000;
-    --border: 1px solid #cccccc;
-    --border-radius: 8px;
+    --background: #fdf9f3;
+    --background-accent: #3D3D3D;
+    --settings-size: 3.75rem;
+    --text-colour: #292929;
+    --border: 0.06 rem solid #525252;
+    --border-radius: 0.5 rem;
     --speed: 500ms;
+    --button-size: 3.75rem;
 }
+
+body {
+
+    font-family: 'Archivo', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    background-color: var(--background);
+
+
+
+}
+.container {
+    /*padding: 1rem;*/
+    -webkit-transition: .2s;
+    transition: .2s;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
+}
+
+.button-group {
+    display: -ms-flex;
+    display: flex;
+    place-content: center;
+
+}
+
+.tap-tempo {
+    min-width: 3rem;
+    place-content: center;
+    width: 5rem;
+    height: 3rem;
+    border-radius: 10%;
+    display: -ms-grid;
+    display: grid;
+    transition: all 0.3s linear;
+    margin-right: 1.5rem;
+}
+
+.reset {
+    min-width: 3rem;
+    place-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: -ms-grid;
+    display: grid;
+    transition: all 0.3s linear;
+}
+
+@media (min-width: 62rem) {
+    .container {
+        width: 50%;
+    }
+}
+
+.button-bar {
+    display: -ms-grid;
+    display: grid;
+    place-content: center;
+}
+
+.wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: calc(100vh - 10rem);
+
+    padding: 2rem;
+
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+button{
+    border-color: var(--border);
+    background-color: transparent;
+}
+
+/*TODO change hover colour*/
+button:hover {
+    background-color: #F9EDDC;
+}
+a {
+    -webkit-transition: .3s;
+    transition: .3s;
+    text-decoration: none;
+    color:  var(--background-accent);
+}
+
+
+
+
+
+
+ul {
+    list-style-type: none;
+}
+
+.icons {
+    vertical-align: -0.175rem;
+}
+
 
 footer {
+
+    /*vertical-align: middle;*/
     width: 100%;
     text-align: center;
-    margin-top: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: 1.2rem;
+
+
+    /*display: inline-block;*/
+    /*float: left;*/
 }
 
+
+/*
+@media only screen and (min-width: 321px) {
+    .wrapper {
+        padding: 2rem;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .wrapper {
+        padding: 5rem 0;
+    }
+
+    .container {
+        min-height: calc(100vh - 10rem);
+        max-width: 480px;
+        padding: 2rem;
+    }
+
+}*/
+
+.settings-button:hover {
+    -webkit-transform: rotateZ(270deg);
+    -moz-transform: rotateZ(270deg);
+    transform: rotateZ(270deg);
+
+}
+
+.settings-button {
+    -webkit-transition: 0.6s ease-out;
+    -moz-transition: 0.6s ease-out;
+    transition: 0.6s ease-out;
+    font-size: 1.8rem;
+
+}
+
+.settings-button, .settings-button:visited, .settings-button:active {
+    color: inherit;
+}
+
+.icon-button {
+    /*transition: filter 300ms;*/
+    /*border-color: red;*/
+}
+nav
+{
+
+    /*width: 100%;*/
+    text-align: right;
+    margin-top: 2rem;
+
+/*    display: inline-block;
+    float: right;*/
+}
+
+@media (max-width: 60rem) {
+    nav {
+        margin-top: 0;
+    }
+}
+
+.dropdown{
+
+
+    border: 0.125rem solid #525252;
+    /*border-radius: 0.3rem;*/
+    vertical-align: -2px;
+    border-radius: 0.2rem;
+    max-width: 10rem;
+    padding: 0 0.5rem 0.5rem 0.5rem;
+    text-align: center;
+
+}
+
+.dropdown-item {
+
+
+    /*align-items: center;*/
+    border-radius: var(--border-radius);
+    transition: background var(--speed);
+    padding-top: 0.5rem;
+    /*padding: 0.5rem;*/
+    /*width: 100%;*/
+
+}
+.dropdown-item-button:hover{
+    background-color: #FCF6EE;
+    transition: all 0.4s linear;
+}
+
+.dropdown-item-button {
+
+    font-size: 1rem;
+    background-color: #F9EDDC;
+    border: transparent;
+    vertical-align: -2px;
+    border-radius: 0.2rem;
+    height: 2.5rem;
+    min-width: 10rem;
+}
+
+.value-label{
+    color: var(--text-colour);
+    text-align: center;
+    font-size: 4rem;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+}
+
+/*TODO update to have a nice border around application*/
+.metro{
+    border: 0.125rem solid #525252;
+}
