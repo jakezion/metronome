@@ -1,32 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {IoLogoGithub} from "react-icons/io5";
 import TempoButton from "./Components/Button";
-import Navbar from "./Components/Settings";
-
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer";
+import './styles/styles.css'
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            opened: false
-        }
     }
 
-
-    toggleSettings() {
-        this.setState((state) => ({opened: state.opened === true}));
-    }
 
     render() {
         return (
+
             <div className="container">
+                <div className="wrapper">
                 <Navbar/>
+                {/*<h1>Metronome</h1>*/}
+                    <div className="metro">
                 <TempoButton/>
-                <footer>
-                    <a href="https://github.com/jakezion/metronome/" target="_blank" rel="noreferrer">
-                        <IoLogoGithub/>&nbsp;Github repository&nbsp;</a>
-                </footer>
+                    </div>
+                </div>
+                <Footer/>
             </div>
         );
     }
