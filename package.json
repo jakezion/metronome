@@ -4,6 +4,8 @@
   "description": "A React-based metronome that takes button inputs to dictate BPM. ",
   "source": "/public/index.html",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "parcel",
     "build": "parcel build"
   },
@@ -25,7 +27,7 @@
   "bugs": {
     "url": "https://github.com/jakezion/metronome/issues"
   },
-  "homepage": "https://github.com/jakezion/metronome#readme",
+  "homepage": "https://jakezion.github.io/metronome",
   "devDependencies": {
     "parcel": "^2.7.0",
     "process": "^0.11.10"
