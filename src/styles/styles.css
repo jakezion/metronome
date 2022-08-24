@@ -37,26 +37,34 @@ body {
 }
 
 .tap-tempo {
-    min-width: 3rem;
+    min-width: 15rem;
     place-content: center;
-    width: 5rem;
+    /*width: 5rem;*/
     height: 3rem;
-    border-radius: 10%;
+    border-radius: 1rem;
     display: -ms-grid;
     display: grid;
     transition: all 0.3s linear;
     margin-right: 1.5rem;
+    margin-left: 1.5rem;
 }
 
+.tempo-label{
+    margin-top: 1rem;
+    font-size: 25px;
+    color: #707070;
+}
 .reset {
     min-width: 3rem;
     place-content: center;
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
     display: -ms-grid;
     display: grid;
     transition: all 0.3s linear;
+    margin: 1.5rem 1.5rem 0 1.5rem;
+    /*font-size: 20px;*/
 }
 
 @media (min-width: 62rem) {
@@ -180,6 +188,7 @@ nav
 {
 
     /*width: 100%;*/
+
     text-align: right;
     margin-top: 2rem;
 
@@ -194,15 +203,18 @@ nav
 }
 
 .dropdown{
-
-
+    position: relative;
+    /*right: 50% !important;*/
+    /*left: 50%;*/
     border: 0.125rem solid #525252;
     /*border-radius: 0.3rem;*/
     vertical-align: -2px;
     border-radius: 0.2rem;
-    max-width: 10rem;
+    /*max-width: 10rem;*/
     padding: 0 0.5rem 0.5rem 0.5rem;
-    text-align: center;
+    text-align: end;
+
+    /*text-align: center;*/
 
 }
 
@@ -243,5 +255,59 @@ nav
 
 /*TODO update to have a nice border around application*/
 .metro{
-    border: 0.125rem solid #525252;
+    margin-bottom: 30%;
+    /*border: 0.125rem solid #525252;*/
+
+}
+
+.dropdown-main{
+    padding-left: 85%;
+}
+
+@media only screen and (max-width: 62rem ){
+    .dropdown-main{
+        padding-left: 85%;
+    }
+}
+
+@media only screen and (max-width: 450px ){
+    .dropdown-main{
+        padding-left: 35%;
+    }
+}
+
+@media only screen and (max-width: 780px ){
+    .dropdown-main{
+        padding-left: 70%;
+    }
+}
+
+@media only screen and (max-width: 1070px ){
+    .dropdown-main{
+        padding-left: 40%;
+    }
+}
+
+@media only screen and (max-width: 1440px ){
+    .dropdown-main{
+        padding-left: 70%;
+    }
+}
+
+.btn-circle{
+    min-width: 3rem;
+    place-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: -ms-grid;
+    display: grid;
+    transition: all 0.3s linear;
+    border: transparent;
+    font-size: 30px;
+}
+
+.metronome-title{
+    position: absolute;
+    text-align: center;
 }
