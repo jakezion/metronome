@@ -11,6 +11,9 @@ export default class Navbar extends React.Component {
         return (
             <>
                 <nav className="settings">
+             {/*       <div className="metronome-title">
+                        Metronome
+                    </div>*/}
                     <ul className="settings-nav">
                         <Dropdown>
                             <DropdownItem icon={<FaGamepad className="icons"/>} title="8-Bit"/>
@@ -39,7 +42,7 @@ function Dropdown(props) {
 
     return (
         <>
-            <div>
+            <div className="dropdown-main">
                 <a href="#" className="icon-button" onClick={() => setOpen(!open)}>
                     {open === false ? <IoSettingsSharp className="settings-button"/> :
                         <IoSettingsOutline className="settings-button"/>}
