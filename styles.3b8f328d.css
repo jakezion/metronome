@@ -1,0 +1,21 @@
+:root {
+  --background: #fff;
+  --background-accent: #000;
+  --settings-size: 60px;
+  --text-colour: #000;
+  --border: 1px solid #ccc;
+  --border-radius: 8px;
+  --speed: 500ms;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/*# sourceMappingURL=styles.3b8f328d.css.map */
