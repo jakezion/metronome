@@ -4,6 +4,7 @@ import TempoButton from "./Components/Button";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import './styles/styles.css'
+import Metronome from "./Components/Metronome";
 
 class App extends React.Component {
     constructor(props) {
@@ -17,9 +18,12 @@ class App extends React.Component {
             <div className="container">
                 <div className="wrapper">
                 <Navbar/>
-                {/*<h1>Metronome</h1>*/}
+
                     <div className="metro">
-                <TempoButton/>
+
+             <Metronome/>
+
+              {/*  <TempoButton/>*/}
                     </div>
                 </div>
                 <Footer/>
