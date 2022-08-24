@@ -1,10 +1,10 @@
 import React from 'react';
 import {IoMusicalNote, IoRefresh, IoPause, IoPlay, IoRemove, IoAdd} from "react-icons/io5";
 
-//sets initial state of the counter, and timestamps for inital and current taps
+//TODO fix padding issue with +- buttons
 
 
-//class for updating and reseting the current bpm
+//class for updating and resetting the current bpm
 export default class TempoButton extends React.Component {
     constructor(props) {
         super(props);
@@ -12,7 +12,7 @@ export default class TempoButton extends React.Component {
     }
 
 
-    //renders the buttons and the calculatebpm class (includes the logic for calculation of bpm)
+    //renders the buttons and then calculate bpm class (includes the logic for calculation of bpm)
     //returns current bpm after 4 taps of button and displays it to the user
     render() {
 
@@ -27,18 +27,16 @@ export default class TempoButton extends React.Component {
                         }
                         <span className="bpm-label">&nbsp;bpm</span>
 
-                    <div className="tempo-label">{this.props.beatsPerBar}/4</div>
+                        <div className="tempo-label">{this.props.beatsPerMeasure}/4</div>
                     </div>
                     <div className="button-group">
 
 
                         <Settings
-                            beatsPerBar={this.props.beatsPerBar}
+                            beatsPerMeasure={this.props.beatsPerMeasure}
                             onClick={this.props.onClick}
                             updateTap={this.props.updateTap}
                         />
-
-
 
 
                     </div>
@@ -60,7 +58,7 @@ export default class TempoButton extends React.Component {
 //variable controller for increasing/decreasing the number of beats per measure
 //between 2-12 beats
 function Settings(props) {
-    console.log("brat: " + props.beatsPerBar);
+    console.log("brat: " + props.beatsPerMeasure);
     return (
 
         <>
@@ -86,12 +84,10 @@ function Settings(props) {
 
 //pause and play button for the audio and visualiser
 function PlayButton(props) {
-
     return (
         <>
-
             <button className="reset" onClick={props.onClick} name="play-button">
-                {props.hasStarted === true ? <IoPause className="plus-minus" /> : <IoPlay/>}
+                {props.hasStarted === true ? <IoPause className="plus-minus"/> : <IoPlay/>}
             </button>
         </>
     );
