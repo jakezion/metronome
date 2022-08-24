@@ -1,52 +1,54 @@
 import React from 'react';
-import {IoMusicalNoteSharp, IoRefreshOutline} from "react-icons/io5";
+import {IoMusicalNote, IoRefresh, IoPause, IoPlay, IoRemove, IoAdd} from "react-icons/io5";
 
 //sets initial state of the counter, and timestamps for inital and current taps
-const initialState = {
-    countTap: 0,
-    initialTap: null,
-    currentTap: null
-}
+
 
 //class for updating and reseting the current bpm
 export default class TempoButton extends React.Component {
     constructor(props) {
         super(props);
-        this.state = initialState;
+
     }
 
-    //updates the tapcount by 1, initialises the initial tap and gets the current tap after each press
-    updateTap(event) {
-        this.setState({
-            countTap: this.state.countTap + 1,
-            initialTap: this.state.initialTap || event.timeStamp,
-            currentTap: event.timeStamp
-        })
-    }
-
-    //resets values back to default
-    resetTap() {
-        this.setState(initialState);
-    }
 
     //renders the buttons and the calculatebpm class (includes the logic for calculation of bpm)
+    //returns current bpm after 4 taps of button and displays it to the user
     render() {
-        const stateData = {
-            countTap: this.state.countTap,
-            initialTap: this.state.initialTap,
-            currentTap: this.state.currentTap
-        };
 
         return (
+
             <>
                 <div className="button-bar">
-                    <CalculateBPM stateData={stateData}/>
+                    <div className="value-label">
+                        {
+                            this.props.countTap >= 4 ?
+                                <span id="value-label">{this.props.bpm}</span> : <></>
+                        }
+                        <span className="bpm-label">&nbsp;bpm</span>
+
+                    <div className="tempo-label">{this.props.beatsPerBar}/4</div>
+                    </div>
                     <div className="button-group">
-                        {/*TODO add pause button*/}
-                        <button onClick={this.updateTap.bind(this)} className="tap-tempo"><IoMusicalNoteSharp/></button>
-                        <button onClick={this.resetTap.bind(this)} className="reset"
-                                disabled={this.state.countTap <= 0}>
-                            <IoRefreshOutline/>
+
+
+                        <Settings
+                            beatsPerBar={this.props.beatsPerBar}
+                            onClick={this.props.onClick}
+                            updateTap={this.props.updateTap}
+                        />
+
+
+
+
+                    </div>
+                    <div className="button-group">
+
+
+                        <PlayButton hasStarted={this.props.hasStarted} onClick={this.props.onClick}/>
+                        <button onClick={this.props.resetTap} className="reset"
+                                disabled={this.props.countTap <= 0}>
+                            <IoRefresh/>
                         </button>
                     </div>
                 </div>
@@ -55,30 +57,45 @@ export default class TempoButton extends React.Component {
     }
 }
 
-//calculates bpm using maths found from:
-//https://guitargearfinder.com/guides/convert-ms-milliseconds-bpm-beats-per-minute-vice-versa/
-//returns current bpm after 4 taps of button and displays it to the user
-class CalculateBPM extends React.Component {
+//variable controller for increasing/decreasing the number of beats per measure
+//between 2-12 beats
+function Settings(props) {
+    console.log("brat: " + props.beatsPerBar);
+    return (
+
+        <>
+            <button
+                name={"decrement-tempo"}
+                onClick={props.onClick}
+                className="btn-circle"
+            ><IoRemove/>
+            </button>
 
 
-    calculateBPM() {
-        //timeStamp produces current time in ms so everything seconds need to be *1000 to work in ms
-        let difference = (this.props.stateData.currentTap - this.props.stateData.initialTap);
-        let average = difference / (this.props.stateData.countTap - 1);
-        //60s (1min == 60s) * 1000ms (1s == 1000ms) / average gives number of beats per minute
-        return Math.round((60 * 1000) / average);
-    }
+            <button onClick={props.updateTap} className="tap-tempo"><IoMusicalNote/></button>
+            <button
+                name={"increment-tempo"}
+                onClick={props.onClick}
+                className="btn-circle"
+            ><IoAdd/>
+            </button>
+        </>
 
-    //testing with 4 taps minimum
-    render() {
-        return (
-            <div className="value-label">
-                {
-                    this.props.stateData.countTap >= 4 ?
-                        <span id="value-label">{this.calculateBPM()}</span> : <></>
-                }
-                <span className="bpm-label">&nbsp;bpm</span>
-            </div>
-        );
-    }
+    )
 }
+
+//pause and play button for the audio and visualiser
+function PlayButton(props) {
+
+    return (
+        <>
+
+            <button className="reset" onClick={props.onClick} name="play-button">
+                {props.hasStarted === true ? <IoPause className="plus-minus" /> : <IoPlay/>}
+            </button>
+        </>
+    );
+}
+
+
+
