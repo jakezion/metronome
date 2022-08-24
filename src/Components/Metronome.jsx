@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import './ticker'
 import TempoButton from "./Button";
 
 export default class Metronome extends React.Component {
