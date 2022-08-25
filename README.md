@@ -1,6 +1,8 @@
 # Metronome - Tap Tempo
 
 A React-based metronome that takes button inputs to dictate BPM.
+
+
 ___
 
 To install:
@@ -14,3 +16,13 @@ To install:
 4. To build the project enter: `npm build`
 
 ___
+
+## Hosted Example
+
+[Metronome](https://jakezion.github.io/metronome/)
+
+![alt-text][image]
+
+[image]: https://github.com/jakezion/metronome/raw/master/public/image.png "Metronome Formatting"
+
+---
