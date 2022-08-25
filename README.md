@@ -21,8 +21,8 @@ ___
 
 [Metronome](https://jakezion.github.io/metronome/)
 
-![alt-text][image]
 
-[image]: https://github.com/jakezion/metronome/raw/master/public/image.png "Metronome Formatting"
+[Metronome](https://github.com/jakezion/metronome/blob/main/public//image.png?raw=true)
+
 
 ---
