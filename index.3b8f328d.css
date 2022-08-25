@@ -3,8 +3,8 @@
   --background-accent: #3d3d3d;
   --settings-size: 3.75rem;
   --text-colour: #292929;
-  --border: .06 rem solid #525252;
-  --border-radius: .5 rem;
+  --border: .06rem solid #525252;
+  --border-radius: .5rem;
   --speed: 500ms;
   --button-size: 3.75rem;
 }
@@ -14,6 +14,18 @@ body {
   font-family: Archivo, sans-serif;
   font-style: normal;
   font-weight: 400;
+}
+
+.fill {
+  background-color: var(--background-accent);
+}
+
+.circle {
+  height: 25px;
+  width: 25px;
+  border: var(--border);
+  border-radius: 50%;
+  display: inline-block;
 }
 
 .container {
@@ -30,7 +42,7 @@ body {
   display: flex;
 }
 
-.tap-tempo {
+.tempo-button {
   min-width: 15rem;
   height: 3rem;
   display: -ms-grid;
@@ -48,11 +60,12 @@ body {
   font-size: 25px;
 }
 
-.reset {
+.circle-button {
   min-width: 3rem;
   width: 4rem;
   height: 4rem;
   display: -ms-grid;
+  border-color: var(--background-accent);
   border-radius: 50%;
   place-content: center;
   margin: 1.5rem 1.5rem 0;
@@ -66,7 +79,7 @@ body {
   }
 }
 
-.button-bar {
+.button-row {
   display: -ms-grid;
   place-content: center;
   display: grid;
@@ -81,7 +94,7 @@ body {
 }
 
 button {
-  border-color: var(--border);
+  border-color: var(--background-accent);
   background-color: #0000;
 }
 
@@ -112,7 +125,7 @@ footer {
 }
 
 .settings-button:hover {
-  transform: rotateZ(270deg);
+  transform: rotateZ(90deg);
 }
 
 .settings-button {
@@ -129,18 +142,13 @@ nav {
   margin-top: 2rem;
 }
 
-@media (max-width: 60rem) {
-  nav {
-    margin-top: 0;
-  }
-}
-
 .dropdown {
   vertical-align: -2px;
-  text-align: end;
+  text-align: center;
   border: .125rem solid #525252;
   border-radius: .2rem;
-  padding: 0 .5rem .5rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
   position: relative;
 }
 
@@ -158,60 +166,29 @@ nav {
 .dropdown-item-button {
   vertical-align: -2px;
   height: 2.5rem;
-  min-width: 10rem;
+  min-width: 90%;
   background-color: #f9eddc;
   border: #0000;
   border-radius: .2rem;
   font-size: 1rem;
 }
 
-.value-label {
-  color: var(--text-colour);
+.active-settings {
+  background-color: #ccc;
+}
+
+.bpm-value {
   text-align: center;
   padding-top: 3rem;
   padding-bottom: 3rem;
   font-size: 4rem;
 }
 
-.metro {
+.main {
   margin-bottom: 30%;
 }
 
-.dropdown-main {
-  padding-left: 85%;
-}
-
-@media only screen and (max-width: 62rem) {
-  .dropdown-main {
-    padding-left: 85%;
-  }
-}
-
-@media only screen and (max-width: 450px) {
-  .dropdown-main {
-    padding-left: 35%;
-  }
-}
-
-@media only screen and (max-width: 780px) {
-  .dropdown-main {
-    padding-left: 70%;
-  }
-}
-
-@media only screen and (max-width: 1070px) {
-  .dropdown-main {
-    padding-left: 40%;
-  }
-}
-
-@media only screen and (max-width: 1440px) {
-  .dropdown-main {
-    padding-left: 70%;
-  }
-}
-
-.btn-circle {
+.hollow-button {
   min-width: 3rem;
   width: 3rem;
   height: 3rem;
@@ -224,9 +201,68 @@ nav {
   display: grid;
 }
 
+.button-icon {
+  pointer-events: none;
+}
+
 .metronome-title {
   text-align: center;
   position: absolute;
+}
+
+@media only screen and (max-width: 2560px) {
+  .dropdown-main {
+    margin-top: 0;
+    padding-left: 85%;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .dropdown-main {
+    padding-left: 70%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .dropdown-main {
+    padding-left: 55%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .dropdown-main {
+    padding-left: 70%;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .dropdown-main {
+    padding-left: 35%;
+  }
+
+  .tempo-button {
+    min-width: 12rem;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .dropdown-main {
+    padding-left: 20%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .dropdown-main {
+    padding-left: 0;
+  }
+
+  .tempo-button {
+    min-width: 10rem;
+  }
+
+  .circle-button {
+    margin: 1.5rem 1rem 0;
+  }
 }
 
 /*# sourceMappingURL=index.3b8f328d.css.map */
