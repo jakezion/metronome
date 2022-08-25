@@ -5,20 +5,35 @@ import {FaDrum, FaGamepad, FaPlug} from "react-icons/fa";
 export default class Navbar extends React.Component {
     constructor(props) {
         super(props);
+        //TODO finish active button
     }
+
 
     render() {
         return (
             <>
                 <nav className="settings">
-             {/*       <div className="metronome-title">
-                        Metronome
-                    </div>*/}
                     <ul className="settings-nav">
                         <Dropdown>
-                            <DropdownItem icon={<FaGamepad className="icons"/>} title="8-Bit"/>
-                            <DropdownItem icon={<FaDrum/>} title="Drum"/>
-                            <DropdownItem icon={<FaPlug/>} title="Beep"/>
+                            <DropdownItem icon={<FaPlug className="icons button-icon "/>}
+                                          onClick={this.props.onClick}
+                                          title="Beep"
+                                          name="beep"
+                                          active={this.props.audioType === 1 ? "active-settings" : ""}
+                            />
+                            <DropdownItem icon={<FaGamepad className="icons button-icon"/>}
+                                          onClick={this.props.onClick}
+                                          title="8-Bit"
+                                          name="bit"
+                                          active={this.props.audioType === 2 ? "active-settings" : ""}
+                            />
+                            <DropdownItem icon={<FaDrum className="icons button-icon"/>}
+                                          onClick={this.props.onClick}
+                                          title="Drum"
+                                          name="drum"
+                                          active={this.props.audioType === 3 ? "active-settings" : ""}
+                            />
+
                         </Dropdown>
                     </ul>
                 </nav>
@@ -31,7 +46,8 @@ export default class Navbar extends React.Component {
 function DropdownItem(props) {
     return (
         <div className="dropdown-item">
-            <button className="dropdown-item-button">{props.icon}&nbsp;&nbsp;{props.title}</button>
+            <button className="dropdown-item-button" name={props.name}
+                    onClick={props.onClick}>{props.icon}&nbsp;&nbsp;{props.title}</button>
         </div>
     );
 }
