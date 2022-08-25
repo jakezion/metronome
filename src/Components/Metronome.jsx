@@ -3,6 +3,7 @@ import TempoButton from "./Button";
 import Visualiser from "./Visualiser";
 
 export default class Metronome extends React.Component {
+
     constructor(props) {
         super(props);
 
@@ -106,12 +107,15 @@ export default class Metronome extends React.Component {
 
                     let bit = (note.beat !== 0) ? 'https://cdn.freesound.org/previews/159/159376_2874984-lq.mp3' : 'https://cdn.freesound.org/previews/273/273766_3554699-lq.mp3';
                     this.playCustomSound(bit);
+
                 }
                 break;
             case 3:
                 if (this.state.bpm !== null) {
+
                     let drum = (note.beat !== 0) ? 'https://cdn.freesound.org/previews/68/68609_19778-lq.mp3' : 'https://cdn.freesound.org/previews/61/61564_321967-lq.mp3';
                     this.playCustomSound(drum);
+
                 }
                 break;
             default:
@@ -198,11 +202,6 @@ export default class Metronome extends React.Component {
 // re-inits audiocontext when unpaused to avoid sound overlapping
     handleClick(event) {
 
-        /*      if (this.state.countTap === 4) {
-                  console.log("changing to start");
-                  this.setState(state => ({hasStarted: !state.hasStarted}));
-              }*/
-
         if (event.target.name === "decrement-tempo") {
             if (this.state.beatsPerMeasure > 2) {
                 this.setState({beatsPerMeasure: this.state.beatsPerMeasure - 1});
@@ -210,6 +209,7 @@ export default class Metronome extends React.Component {
             }
             return;
         }
+
         if (event.target.name === "increment-tempo") {
             if (this.state.beatsPerMeasure < 12) {
                 this.setState({beatsPerMeasure: this.state.beatsPerMeasure + 1});
@@ -256,13 +256,15 @@ export default class Metronome extends React.Component {
     render() {
         return (
             <>
-                <Visualiser
+
+                dfasljfasd
+             {/*   <Visualiser
                     hasStarted={this.state.hasStarted}
                     queue={this.state.beatQueue}
                     ac={this.ac}
-                    measure={this.state.beatsPerMeasure}
+                    beatsPerMeasure={this.state.beatsPerMeasure}
                     bpm={this.state.bpm}
-                />
+                />*/}
 
                 <TempoButton
                     beatsPerMeasure={this.state.beatsPerMeasure}
