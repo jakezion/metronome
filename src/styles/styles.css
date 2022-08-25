@@ -3,8 +3,8 @@
     --background-accent: #3D3D3D;
     --settings-size: 3.75rem;
     --text-colour: #292929;
-    --border: 0.06 rem solid #525252;
-    --border-radius: 0.5 rem;
+    --border: 0.06rem solid #525252;
+    --border-radius: 0.5rem;
     --speed: 500ms;
     --button-size: 3.75rem;
 }
@@ -17,10 +17,24 @@ body {
     background-color: var(--background);
 
 
+}
+
+.fill{
+    background-color: var(--background-accent);
+}
+.circle {
+    height: 25px;
+    width: 25px;
+    border: var(--border);
+    border-radius: 50%;
+    display: inline-block;
+
 
 }
+
+
+
 .container {
-    /*padding: 1rem;*/
     -webkit-transition: .2s;
     transition: .2s;
     margin-left: auto;
@@ -36,7 +50,7 @@ body {
 
 }
 
-.tap-tempo {
+.tempo-button {
     min-width: 15rem;
     place-content: center;
     /*width: 5rem;*/
@@ -49,12 +63,13 @@ body {
     margin-left: 1.5rem;
 }
 
-.tempo-label{
+.tempo-label {
     margin-top: 1rem;
     font-size: 25px;
     color: #707070;
 }
-.reset {
+
+.circle-button {
     min-width: 3rem;
     place-content: center;
     width: 4rem;
@@ -64,7 +79,7 @@ body {
     display: grid;
     transition: all 0.3s linear;
     margin: 1.5rem 1.5rem 0 1.5rem;
-    /*font-size: 20px;*/
+    border-color: var(--background-accent);
 }
 
 @media (min-width: 62rem) {
@@ -73,7 +88,54 @@ body {
     }
 }
 
-.button-bar {
+
+/*!* CSS *!*/
+/*.circle-button {*/
+/*    min-width: 3rem;*/
+/*    place-content: center;*/
+/*    width: 4rem;*/
+/*    height: 4rem;*/
+/*    border-radius: 50%;*/
+/*    display: -ms-grid;*/
+/*    display: grid;*/
+/*    !*transition: all 0.3s linear;*!*/
+/*    margin: 1.5rem 1.5rem 0 1.5rem;*/
+
+/*    !*margin: 10px;*!*/
+/*    padding: 15px 30px;*/
+/*    text-align: center;*/
+/*    text-transform: uppercase;*/
+/*    transition: 0.5s;*/
+/*    background-size: 200% auto;*/
+/*    color: white;*/
+/*    !*border-radius: 10px;*!*/
+/*    !*display: block;*!*/
+/*    border: 0px;*/
+/*    font-weight: 700;*/
+/*    box-shadow: 0px 0px 14px -7px #f09819;*/
+/*    background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%);*/
+/*    cursor: pointer;*/
+/*    user-select: none;*/
+/*    -webkit-user-select: none;*/
+/*    touch-action: manipulation;*/
+/*}*/
+
+/*.circle-button:hover {*/
+/*    background-position: right center;*/
+/*    !* change the direction of the change here *!*/
+/*    color: #fff;*/
+/*    text-decoration: none;*/
+/*}*/
+
+/*.circle-button:active {*/
+/*    transform: scale(0.95);*/
+/*}*/
+/*.circle-button:disabled {*/
+/*    background-image: var(--background-accent) 0%, var(--background-accent) 51%, var(--background-accent) 100%);*/
+/*}*/
+
+
+.button-row {
     display: -ms-grid;
     display: grid;
     place-content: center;
@@ -96,25 +158,25 @@ body {
     justify-content: space-between;
 }
 
-button{
-    border-color: var(--border);
+button {
+
     background-color: transparent;
+    border-color: var(--background-accent);
 }
 
 /*TODO change hover colour*/
 button:hover {
+    /*transition: all 0.3s linear;*/
+    /*background-image: linear-gradient(70deg, var(--background) 0%, #F9EDDC 51%, var(--background) 100%);*/
     background-color: #F9EDDC;
 }
+
 a {
     -webkit-transition: .3s;
     transition: .3s;
     text-decoration: none;
-    color:  var(--background-accent);
+    color: var(--background-accent);
 }
-
-
-
-
 
 
 ul {
@@ -128,43 +190,18 @@ ul {
 
 footer {
 
-    /*vertical-align: middle;*/
     width: 100%;
     text-align: center;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     font-size: 1.2rem;
-
-
-    /*display: inline-block;*/
-    /*float: left;*/
 }
 
-
-/*
-@media only screen and (min-width: 321px) {
-    .wrapper {
-        padding: 2rem;
-    }
-}
-
-@media only screen and (min-width: 769px) {
-    .wrapper {
-        padding: 5rem 0;
-    }
-
-    .container {
-        min-height: calc(100vh - 10rem);
-        max-width: 480px;
-        padding: 2rem;
-    }
-
-}*/
 
 .settings-button:hover {
-    -webkit-transform: rotateZ(270deg);
-    -moz-transform: rotateZ(270deg);
-    transform: rotateZ(270deg);
+    /*    -webkit-transform: rotateZ(270deg);
+        -moz-transform: rotateZ(270deg);*/
+    transform: rotateZ(90deg);
 
 }
 
@@ -180,29 +217,15 @@ footer {
     color: inherit;
 }
 
-.icon-button {
-    /*transition: filter 300ms;*/
-    /*border-color: red;*/
-}
-nav
-{
 
-    /*width: 100%;*/
 
+nav {
     text-align: right;
     margin-top: 2rem;
-
-/*    display: inline-block;
-    float: right;*/
 }
 
-@media (max-width: 60rem) {
-    nav {
-        margin-top: 0;
-    }
-}
 
-.dropdown{
+.dropdown {
     position: relative;
     /*right: 50% !important;*/
     /*left: 50%;*/
@@ -211,8 +234,11 @@ nav
     vertical-align: -2px;
     border-radius: 0.2rem;
     /*max-width: 10rem;*/
-    padding: 0 0.5rem 0.5rem 0.5rem;
-    text-align: end;
+
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    /*padding: 0 0.5rem 0.5rem 0.5rem;*/
+    text-align: center;
 
     /*text-align: center;*/
 
@@ -229,7 +255,8 @@ nav
     /*width: 100%;*/
 
 }
-.dropdown-item-button:hover{
+
+.dropdown-item-button:hover {
     background-color: #FCF6EE;
     transition: all 0.4s linear;
 }
@@ -242,11 +269,15 @@ nav
     vertical-align: -2px;
     border-radius: 0.2rem;
     height: 2.5rem;
-    min-width: 10rem;
+    min-width: 90%;
 }
 
-.value-label{
-    color: var(--text-colour);
+.active-settings{
+    background-color: #cccccc;
+}
+
+.bpm-value {
+    /*color: var(--text-colour);*/
     text-align: center;
     font-size: 4rem;
     padding-bottom: 3rem;
@@ -254,47 +285,14 @@ nav
 }
 
 /*TODO update to have a nice border around application*/
-.metro{
+.main {
     margin-bottom: 30%;
     /*border: 0.125rem solid #525252;*/
 
 }
 
-.dropdown-main{
-    padding-left: 85%;
-}
 
-@media only screen and (max-width: 62rem ){
-    .dropdown-main{
-        padding-left: 85%;
-    }
-}
-
-@media only screen and (max-width: 450px ){
-    .dropdown-main{
-        padding-left: 35%;
-    }
-}
-
-@media only screen and (max-width: 780px ){
-    .dropdown-main{
-        padding-left: 70%;
-    }
-}
-
-@media only screen and (max-width: 1070px ){
-    .dropdown-main{
-        padding-left: 40%;
-    }
-}
-
-@media only screen and (max-width: 1440px ){
-    .dropdown-main{
-        padding-left: 70%;
-    }
-}
-
-.btn-circle{
+.hollow-button {
     min-width: 3rem;
     place-content: center;
     width: 3rem;
@@ -307,7 +305,85 @@ nav
     font-size: 30px;
 }
 
-.metronome-title{
+.button-icon {
+    pointer-events: none;
+}
+
+
+/*.counter {
+    width: 100%;
+    padding-bottom: 10px;
+    background: lighten(#333, 5%);
+    text-align: center;
+
+.dot {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin: 25px 10px 10px 10px;
+    background: #FFF;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}*/
+
+.metronome-title {
     position: absolute;
     text-align: center;
 }
+
+@media only screen and (max-width: 2560px ) {
+    .dropdown-main {
+        padding-left: 85%;
+        margin-top: 0;
+    }
+}
+
+@media only screen and (max-width: 1440px ) {
+    .dropdown-main {
+        padding-left: 70%;
+    }
+}
+
+@media only screen and (max-width: 1024px ) {
+    .dropdown-main {
+        padding-left: 55%;
+    }
+}
+
+@media only screen and (max-width: 768px ) {
+    .dropdown-main {
+        padding-left: 70%;
+    }
+}
+
+@media only screen and (max-width: 425px ) {
+    .dropdown-main {
+        padding-left: 35%;
+    }
+
+    .tempo-button {
+        min-width: 12rem;
+    }
+}
+
+@media only screen and (max-width: 375px ) {
+    .dropdown-main {
+        padding-left: 20%;
+    }
+}
+
+@media only screen and (max-width: 320px ) {
+    .dropdown-main {
+        padding-left: 0;
+    }
+
+    .tempo-button {
+        min-width: 10rem;
+    }
+
+    .circle-button {
+        margin: 1.5rem 1rem 0 1rem;
+    }
+}
+
