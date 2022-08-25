@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import TempoButton from "./Button";
+import Visualiser from "./Visualiser";
 
 export default class Metronome extends React.Component {
     constructor(props) {
@@ -13,14 +14,13 @@ export default class Metronome extends React.Component {
             interval: null,
 
             //assign next beat timing
-            noteQueue: [],
+            beatQueue: [],
             nextBeat: 0,
             nextBeatInterval: 0,
             nextClick: 0,
             nextClickInterval: 0,
             beatsPerMeasure: 4,
             clicksPerBeat: 1,
-
 
             //for tap tempo button
             bpm: null,
@@ -64,29 +64,77 @@ export default class Metronome extends React.Component {
 
     //reset tap data back to defaults
     resetTap() {
+        /*   this.ac.close();*/
+        clearInterval(this.state.interval);
+        this.setState(state => ({}));
         this.setState({
             bpm: 0,
             countTap: 0,
             initialTap: null,
             currentTap: null,
+            hasStarted: false,
+            beginAudio: false,
+            beatQueue: [],
+            nextClickInterval: 0,
+            nextBeat: 0,
+            nextClick: 0
         });
 
     }
 
     createNote(note) {
-        //TODO change to media source to allow for custom sounds
-        let oscillator = this.ac.createOscillator();
-        oscillator.type = 'triangle';
-        oscillator.connect(this.ac.destination);
-        oscillator.start(this.state.nextClickInterval);
-        //stop after 0.1s or 100ms
-        oscillator.stop(this.state.nextClickInterval + 0.05);
 
-        // if note is 1st in queue, play lower frequency to distinguish difference in sounds
-        // https://www.acousticslab.org/psychoacoustics/PMFiles/Module05.htm for music theory reference
-        // TODO change to 880 or 440 for different pitch
-        oscillator.frequency.value = note.beat !== 0 ? 220.0 : 440.0;
+        switch (this.props.audioType) {
+            case 1:
+                let oscillator = this.ac.createOscillator();
+                //settings gain to 10%
+                let gain = this.ac.createGain();
+                oscillator.type = 'triangle';
+                oscillator.connect(gain).connect(this.ac.destination);
+                gain.gain.value = 0.05;
+                oscillator.start(this.state.nextClickInterval);
 
+                //stop after 0.1s or 100ms
+                oscillator.stop(this.state.nextClickInterval + 0.05);
+                // if note is 1st in queue, play lower frequency to distinguish difference in sounds
+                // https://www.acousticslab.org/psychoacoustics/PMFiles/Module05.htm for music theory reference
+                oscillator.frequency.value = note.beat !== 0 ? 220.0 : 440.0;
+                break;
+            case 2:
+                //if bpm == 0 dont play sound
+                if (this.state.bpm !== null) {
+
+                    let bit = (note.beat !== 0) ? 'https://cdn.freesound.org/previews/159/159376_2874984-lq.mp3' : 'https://cdn.freesound.org/previews/273/273766_3554699-lq.mp3';
+                    this.playCustomSound(bit);
+                }
+                break;
+            case 3:
+                if (this.state.bpm !== null) {
+                    let drum = (note.beat !== 0) ? 'https://cdn.freesound.org/previews/68/68609_19778-lq.mp3' : 'https://cdn.freesound.org/previews/61/61564_321967-lq.mp3';
+                    this.playCustomSound(drum);
+                }
+                break;
+            default:
+                break;
+        }
+
+
+    }
+
+    //play custom sound from url, add to a buffer stream, then play sound for 50ms
+    playCustomSound(url) {
+        fetch(url)
+            .then(resp => resp.arrayBuffer())
+            .then(arrayBuffer => this.ac.decodeAudioData(arrayBuffer))
+            .then(audioBuffer => {
+                const sound = this.ac.createBufferSource();
+                sound.buffer = audioBuffer;
+                let gain = this.ac.createGain();
+                sound.connect(gain).connect(this.ac.destination);
+                gain.gain.value = 0.05;
+                sound.start(this.state.nextClickInterval);
+                sound.stop(this.state.nextClickInterval + 0.05);
+            })
     }
 
     queueNote() {
@@ -94,46 +142,49 @@ export default class Metronome extends React.Component {
         if (this.state.hasStarted === false) return;
 
         //while next click is less than current time + buffer get next beat
-        while (this.state.nextClickInterval < this.ac.currentTime + 0.1) {
+        if (this.state.bpm !== 0) {
+            while (this.state.nextClickInterval < this.ac.currentTime + 0.1) {
 
-            let nextBeat = this.state.nextBeat;
-            let nextClick = this.state.nextClick;
-            //get frequency of beats per second e.g. 120 bpm == every 0.5s
-            let beatInterval = 60.0 / this.state.bpm;
-            let nextBeatInterval = this.state.nextBeatInterval;
+                let nextBeat = this.state.nextBeat;
+                let nextClick = this.state.nextClick;
+                //get frequency of beats per second e.g. 120 bpm == every 0.5s
+                let beatInterval = 60.0 / this.state.bpm;
+                let nextBeatInterval = this.state.nextBeatInterval;
 
-            //make new note
-            let nextNote = new Beat(this.state.nextClickInterval, nextBeat, nextClick);
-            if (nextNote.click === 0) {
-                nextBeatInterval = nextNote.time + beatInterval;
+                //make new note
+                let nextNote = new Beat(this.state.nextClickInterval, nextBeat, nextClick);
+                if (nextNote.click === 0) {
+                    nextBeatInterval = nextNote.time + beatInterval;
+                }
+                //make noise for short interval then stop oscillator
+                this.createNote(nextNote);
+
+                nextBeat++;
+                nextClick = 0;
+                if (nextBeat >= this.state.beatsPerMeasure) {
+                    nextBeat = 0;
+
+                }
+
+                //combines state with new note and creates new array
+                this.setState((state) => {
+                    const queue = state.beatQueue.concat(nextNote);
+
+                    return {
+                        beatQueue: queue,
+                        nextClickInterval: state.nextClickInterval + 1 / this.state.clicksPerBeat * beatInterval,
+                        nextBeatInterval: nextBeatInterval,
+                        nextBeat: nextBeat,
+                        nextClick: nextClick
+                    };
+                });
             }
-            //make noise for short interval then stop oscillator
-            this.createNote(nextNote);
-
-            nextBeat++;
-            nextClick = 0;
-            if (nextBeat >= this.state.beatsPerMeasure) {
-                nextBeat = 0;
-
-            }
-
-            //combines state with new note and creates new array
-            this.setState((state) => {
-                const queue = state.noteQueue.concat(nextNote);
-
-                return {
-                    noteQueue: queue,
-                    nextClickInterval: state.nextClickInterval + 1 / this.state.clicksPerBeat * beatInterval,
-                    nextBeatInterval: nextBeatInterval,
-                    nextBeat: nextBeat,
-                    nextClick: nextClick
-                };
-            });
         }
+
     }
 
 
-    //create bufferSource and start at current time
+//create bufferSource and start at current time
     startAudio() {
         this.ac.createBufferSource().buffer = this.ac.createBuffer(
             1,
@@ -143,8 +194,8 @@ export default class Metronome extends React.Component {
         this.ac.createBufferSource().start(this.ac.currentTime);
     }
 
-    // updates hasStarted, increment/decrement of beats per measure,
-    // re-inits audiocontext when unpaused to avoid sound overlapping
+// updates hasStarted, increment/decrement of beats per measure,
+// re-inits audiocontext when unpaused to avoid sound overlapping
     handleClick(event) {
 
         /*      if (this.state.countTap === 4) {
@@ -178,7 +229,7 @@ export default class Metronome extends React.Component {
                 this.setState(state => ({
                     hasStarted: !state.hasStarted,
                     beginAudio: false,
-                    noteQueue: [],
+                    beatQueue: [],
                     nextClickInterval: 0,
                     nextBeat: 0,
                     nextClick: 0
@@ -191,14 +242,12 @@ export default class Metronome extends React.Component {
                     this.startAudio();
                 }
 
-                this.interval = setInterval(() => this.queueNote(), 25);
-
                 this.setState(state => ({
                     hasStarted: !state.hasStarted,
                     beginAudio: true
                 }));
 
-
+                this.interval = setInterval(() => this.queueNote(), 25);
             }
         }
     }
@@ -207,6 +256,14 @@ export default class Metronome extends React.Component {
     render() {
         return (
             <>
+                <Visualiser
+                    hasStarted={this.state.hasStarted}
+                    queue={this.state.beatQueue}
+                    ac={this.ac}
+                    measure={this.state.beatsPerMeasure}
+                    bpm={this.state.bpm}
+                />
+
                 <TempoButton
                     beatsPerMeasure={this.state.beatsPerMeasure}
                     onClick={this.handleClick.bind(this)}
