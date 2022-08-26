@@ -2,6 +2,8 @@
 
 A React-based Metronome that takes button inputs to dictate BPM.
 
+Designed for a technical task interview
+
 To use: 
 
 - Press the tap button `4 times` and a bpm will be assigned.
