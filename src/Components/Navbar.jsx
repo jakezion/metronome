@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {IoSettingsOutline, IoSettingsSharp, IoMusicalNoteSharp, IoMicSharp} from "react-icons/io5";
+import {IoSettingsOutline, IoSettingsSharp} from "react-icons/io5";
 import {FaDrum, FaGamepad, FaPlug} from "react-icons/fa";
 
 export default class Navbar extends React.Component {
