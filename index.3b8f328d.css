@@ -15,10 +15,6 @@ a {
   transition: all .3s;
 }
 
-.active-settings {
-  background-color: #ccc;
-}
-
 .bpm-value {
   text-align: center;
   padding-top: 3rem;
@@ -117,6 +113,10 @@ button:hover {
   border: #0000;
   border-radius: .2rem;
   font-size: 1rem;
+}
+
+.dropdown-active-button {
+  border: .15rem solid #525252;
 }
 
 .fill {
