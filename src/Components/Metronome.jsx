@@ -68,7 +68,6 @@ export default class Metronome extends React.Component {
     resetTap() {
         /*   this.ac.close();*/
         clearInterval(this.state.interval);
-        this.setState(state => ({}));
         this.setState({
             bpm: 0,
             countTap: 0,
@@ -95,7 +94,6 @@ export default class Metronome extends React.Component {
                 oscillator.connect(gain).connect(this.ac.destination);
                 gain.gain.value = 0.05;
                 oscillator.start(this.state.nextClickInterval);
-
                 //stop after 0.1s or 100ms
                 oscillator.stop(this.state.nextClickInterval + 0.05);
                 // if note is 1st in queue, play lower frequency to distinguish difference in sounds
@@ -103,20 +101,22 @@ export default class Metronome extends React.Component {
                 oscillator.frequency.value = note.beat !== 0 ? 220.0 : 440.0;
                 break;
             case 2:
-                //if bpm == 0 dont play sound
+                //if bpm == 0 play higher pitch
+                //TODO beat is off by 1 for custom sounds
+
                 if (this.state.bpm !== null) {
 
                     //emulate higher and lower pitches to differentiate the start of a new measure
-                    let bit = (note.beat !== 0) ? 'https://cdn.freesound.org/previews/159/159376_2874984-lq.mp3' : 'https://cdn.freesound.org/previews/273/273766_3554699-lq.mp3';
-                    this.playCustomSound(bit);
+                    //let bit = note.beat !== 0 ? 'https://cdn.freesound.org/previews/159/159376_2874984-lq.mp3' : 'https://cdn.freesound.org/previews/273/273766_3554699-lq.mp3';
+                    this.playCustomSound('https://cdn.freesound.org/previews/159/159376_2874984-lq.mp3');
 
                 }
                 break;
             case 3:
                 if (this.state.bpm !== null) {
 
-                    let drum = (note.beat !== 0) ? 'https://cdn.freesound.org/previews/68/68609_19778-lq.mp3' : 'https://cdn.freesound.org/previews/61/61564_321967-lq.mp3';
-                    this.playCustomSound(drum);
+                    //let drum = note.beat !== 0 ? 'https://cdn.freesound.org/previews/68/68609_19778-lq.mp3' : 'https://cdn.freesound.org/previews/61/61564_321967-lq.mp3';
+                    this.playCustomSound('https://cdn.freesound.org/previews/68/68609_19778-lq.mp3');
 
                 }
                 break;
@@ -158,11 +158,11 @@ export default class Metronome extends React.Component {
                 let nextBeatInterval = this.state.nextBeatInterval;
 
                 //make new note
-                let nextNote = new Beat(this.state.nextClickInterval, nextBeat, nextClick);
-                if (nextNote.click === 0) {
-                    nextBeatInterval = nextNote.time + beatInterval;
-                }
-                //make noise for short interval then stop oscillator
+                let nextNote = new Beat(this.state.nextClickInterval, nextBeat);
+                //set next interval to the note timing + the beat interval
+                nextBeatInterval = nextNote.time + beatInterval;
+
+                //make noise for short interval then stop the sound
                 this.createNote(nextNote);
 
                 nextBeat++;
@@ -285,8 +285,9 @@ export default class Metronome extends React.Component {
 
 //beat class for an individual note, creates new instance of time, beat and click for each beat.
 class Beat {
-    constructor(time = 0, beat = 0, click = 0) {
+    constructor(time = 0, beat = 0) {
         this.time = time;
         this.beat = beat;
+
     }
 }
