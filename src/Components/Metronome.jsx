@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react';
-import TempoButton from "./Button";
+import React from 'react';
+import Panel from "./Panel";
 import Visualiser from "./Visualiser";
+
 
 export default class Metronome extends React.Component {
 
@@ -63,7 +64,7 @@ export default class Metronome extends React.Component {
 
     }
 
-    //reset tap data back to defaults
+    //reset tap data back to default and stop audio
     resetTap() {
         /*   this.ac.close();*/
         clearInterval(this.state.interval);
@@ -105,6 +106,7 @@ export default class Metronome extends React.Component {
                 //if bpm == 0 dont play sound
                 if (this.state.bpm !== null) {
 
+                    //emulate higher and lower pitches to differentiate the start of a new measure
                     let bit = (note.beat !== 0) ? 'https://cdn.freesound.org/previews/159/159376_2874984-lq.mp3' : 'https://cdn.freesound.org/previews/273/273766_3554699-lq.mp3';
                     this.playCustomSound(bit);
 
@@ -223,6 +225,7 @@ export default class Metronome extends React.Component {
         //closes ac and resets state data back to default to wipe queue
         if (event.target.name === "play-button") {
 
+            //pause
             if (this.state.hasStarted) {
                 this.ac.close();
                 clearInterval(this.state.interval);
@@ -235,6 +238,7 @@ export default class Metronome extends React.Component {
                     nextClick: 0
                 }));
             } else {
+                //play
                 //re-init ac
                 this.ac = new AudioContext({sampleRate: 44100});
 
@@ -247,6 +251,7 @@ export default class Metronome extends React.Component {
                     beginAudio: true
                 }));
 
+                //animationframe not used as a consistent timer is required for an accurate metronome
                 this.interval = setInterval(() => this.queueNote(), 25);
             }
         }
@@ -256,17 +261,15 @@ export default class Metronome extends React.Component {
     render() {
         return (
             <>
-
-                dfasljfasd
-             {/*   <Visualiser
+                <Visualiser
                     hasStarted={this.state.hasStarted}
                     queue={this.state.beatQueue}
                     ac={this.ac}
                     beatsPerMeasure={this.state.beatsPerMeasure}
                     bpm={this.state.bpm}
-                />*/}
+                />
 
-                <TempoButton
+                <Panel
                     beatsPerMeasure={this.state.beatsPerMeasure}
                     onClick={this.handleClick.bind(this)}
                     hasStarted={this.state.hasStarted}
@@ -285,6 +288,5 @@ class Beat {
     constructor(time = 0, beat = 0, click = 0) {
         this.time = time;
         this.beat = beat;
-        this.click = click;
     }
 }
