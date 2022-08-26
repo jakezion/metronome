@@ -2,7 +2,7 @@ import React from 'react';
 import {IoMusicalNote, IoPause, IoPlay, IoRemove, IoAdd, IoReload} from "react-icons/io5";
 
 //class for updating and resetting the current bpm
-export default class TempoButton extends React.Component {
+export default class Panel extends React.Component {
     constructor(props) {
         super(props);
 
@@ -69,7 +69,7 @@ function Settings(props) {
 }
 
 //pause and play button for the audio and visualiser
-//TODO add disabled if clicks are less than 4
+// TODO add disabled if clicks are less than 4
 function PlayButton(props) {
 
     return (
