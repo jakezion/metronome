@@ -35,10 +35,9 @@ ___
 
 ## Hosted Example
 
-[Metronome](https://jakezion.github.io/metronome/)
 
+[![Metronome](https://github.com/jakezion/metronome/blob/main/public//image.png?raw=true)](https://jakezion.github.io/metronome/)]
 
-![Metronome](https://github.com/jakezion/metronome/blob/main/public//image.png?raw=true)
 
 
 ---
