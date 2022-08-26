@@ -9,6 +9,25 @@
     --button-size: 3.75rem;
 }
 
+a {
+    -webkit-transition: .3s;
+    transition: .3s;
+    text-decoration: none;
+    color: var(--background-accent);
+}
+
+.active-settings {
+    background-color: #cccccc;
+}
+
+.bpm-value {
+
+    text-align: center;
+    font-size: 4rem;
+    padding-bottom: 3rem;
+    padding-top: 3rem;
+}
+
 body {
 
     font-family: 'Archivo', sans-serif;
@@ -16,31 +35,23 @@ body {
     font-weight: 400;
     background-color: var(--background);
 
-
 }
 
-.fill{
-    background-color: var(--background-accent);
-}
-.circle {
-    height: 25px;
-    width: 25px;
-    border: var(--border);
-    border-radius: 50%;
-    display: inline-block;
+button {
 
-
+    background-color: transparent;
+    border-color: var(--background-accent);
 }
 
+/*TODO change hover colour*/
+button:hover {
+    background-color: #F9EDDC;
+}
 
-
-.container {
-    -webkit-transition: .2s;
-    transition: .2s;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0.9375rem;
-    padding-right: 0.9375rem;
+.button-row {
+    display: -ms-grid;
+    display: grid;
+    place-content: center;
 }
 
 .button-group {
@@ -50,23 +61,18 @@ body {
 
 }
 
-.tempo-button {
-    min-width: 15rem;
-    place-content: center;
-    /*width: 5rem;*/
-    height: 3rem;
-    border-radius: 1rem;
-    display: -ms-grid;
-    display: grid;
-    transition: all 0.3s linear;
-    margin-right: 1.5rem;
-    margin-left: 1.5rem;
+.button-icon {
+    pointer-events: none;
 }
 
-.tempo-label {
-    margin-top: 1rem;
-    font-size: 25px;
-    color: #707070;
+.circle {
+
+    height: 25px;
+    width: 25px;
+    border: var(--border);
+    border-radius: 50%;
+    display: inline-block;
+
 }
 
 .circle-button {
@@ -82,177 +88,32 @@ body {
     border-color: var(--background-accent);
 }
 
-@media (min-width: 62rem) {
-    .container {
-        width: 50%;
-    }
+.container {
+
+    -webkit-transition: .2s;
+    transition: .2s;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0.9375rem;
+    padding-right: 0.9375rem;
 }
-
-
-/*!* CSS *!*/
-/*.circle-button {*/
-/*    min-width: 3rem;*/
-/*    place-content: center;*/
-/*    width: 4rem;*/
-/*    height: 4rem;*/
-/*    border-radius: 50%;*/
-/*    display: -ms-grid;*/
-/*    display: grid;*/
-/*    !*transition: all 0.3s linear;*!*/
-/*    margin: 1.5rem 1.5rem 0 1.5rem;*/
-
-/*    !*margin: 10px;*!*/
-/*    padding: 15px 30px;*/
-/*    text-align: center;*/
-/*    text-transform: uppercase;*/
-/*    transition: 0.5s;*/
-/*    background-size: 200% auto;*/
-/*    color: white;*/
-/*    !*border-radius: 10px;*!*/
-/*    !*display: block;*!*/
-/*    border: 0px;*/
-/*    font-weight: 700;*/
-/*    box-shadow: 0px 0px 14px -7px #f09819;*/
-/*    background-image: linear-gradient(45deg, #FF512F 0%, #F09819 51%, #FF512F 100%);*/
-/*    cursor: pointer;*/
-/*    user-select: none;*/
-/*    -webkit-user-select: none;*/
-/*    touch-action: manipulation;*/
-/*}*/
-
-/*.circle-button:hover {*/
-/*    background-position: right center;*/
-/*    !* change the direction of the change here *!*/
-/*    color: #fff;*/
-/*    text-decoration: none;*/
-/*}*/
-
-/*.circle-button:active {*/
-/*    transform: scale(0.95);*/
-/*}*/
-/*.circle-button:disabled {*/
-/*    background-image: var(--background-accent) 0%, var(--background-accent) 51%, var(--background-accent) 100%);*/
-/*}*/
-
-
-.button-row {
-    display: -ms-grid;
-    display: grid;
-    place-content: center;
-}
-
-.wrapper {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    min-height: calc(100vh - 10rem);
-
-    padding: 2rem;
-
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-}
-
-button {
-
-    background-color: transparent;
-    border-color: var(--background-accent);
-}
-
-/*TODO change hover colour*/
-button:hover {
-    /*transition: all 0.3s linear;*/
-    /*background-image: linear-gradient(70deg, var(--background) 0%, #F9EDDC 51%, var(--background) 100%);*/
-    background-color: #F9EDDC;
-}
-
-a {
-    -webkit-transition: .3s;
-    transition: .3s;
-    text-decoration: none;
-    color: var(--background-accent);
-}
-
-
-ul {
-    list-style-type: none;
-}
-
-.icons {
-    vertical-align: -0.175rem;
-}
-
-
-footer {
-
-    width: 100%;
-    text-align: center;
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    font-size: 1.2rem;
-}
-
-
-.settings-button:hover {
-    /*    -webkit-transform: rotateZ(270deg);
-        -moz-transform: rotateZ(270deg);*/
-    transform: rotateZ(90deg);
-
-}
-
-.settings-button {
-    -webkit-transition: 0.6s ease-out;
-    -moz-transition: 0.6s ease-out;
-    transition: 0.6s ease-out;
-    font-size: 1.8rem;
-
-}
-
-.settings-button, .settings-button:visited, .settings-button:active {
-    color: inherit;
-}
-
-
-
-nav {
-    text-align: right;
-    margin-top: 2rem;
-}
-
 
 .dropdown {
     position: relative;
-    /*right: 50% !important;*/
-    /*left: 50%;*/
     border: 0.125rem solid #525252;
-    /*border-radius: 0.3rem;*/
     vertical-align: -2px;
     border-radius: 0.2rem;
-    /*max-width: 10rem;*/
-
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    /*padding: 0 0.5rem 0.5rem 0.5rem;*/
     text-align: center;
-
-    /*text-align: center;*/
 
 }
 
 .dropdown-item {
 
-
-    /*align-items: center;*/
     border-radius: var(--border-radius);
     transition: background var(--speed);
     padding-top: 0.5rem;
-    /*padding: 0.5rem;*/
-    /*width: 100%;*/
 
 }
 
@@ -272,27 +133,23 @@ nav {
     min-width: 90%;
 }
 
-.active-settings{
-    background-color: #cccccc;
+.fill {
+    background-color: var(--background-accent);
 }
 
-.bpm-value {
-    /*color: var(--text-colour);*/
+footer {
     text-align: center;
-    font-size: 4rem;
-    padding-bottom: 3rem;
-    padding-top: 3rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    font-size: 1.2rem;
 }
 
-/*TODO update to have a nice border around application*/
-.main {
-    margin-bottom: 30%;
-    /*border: 0.125rem solid #525252;*/
-
+.icons {
+    vertical-align: -0.175rem;
 }
-
 
 .hollow-button {
+
     min-width: 3rem;
     place-content: center;
     width: 3rem;
@@ -305,31 +162,96 @@ nav {
     font-size: 30px;
 }
 
-.button-icon {
-    pointer-events: none;
+.main {
+
+    margin-bottom: 30%;
 }
 
-
-/*.counter {
-    width: 100%;
-    padding-bottom: 10px;
-    background: lighten(#333, 5%);
-    text-align: center;
-
-.dot {
-    width: 15px;
-    height: 15px;
-    display: inline-block;
-    margin: 25px 10px 10px 10px;
-    background: #FFF;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: all 0.3s;
-}*/
-
 .metronome-title {
+
     position: absolute;
     text-align: center;
+}
+
+nav {
+
+    text-align: right;
+    margin-top: 2rem;
+}
+
+.settings-button {
+    -webkit-transition: 0.6s ease-out;
+    -moz-transition: 0.6s ease-out;
+    transition: 0.6s ease-out;
+    font-size: 1.8rem;
+
+}
+
+.settings-button:hover {
+
+    transform: rotateZ(90deg);
+}
+
+.settings-button, .settings-button:visited, .settings-button:active {
+    color: inherit;
+}
+
+.tempo-button {
+    min-width: 15rem;
+    place-content: center;
+    height: 3rem;
+    border-radius: 1rem;
+    display: -ms-grid;
+    display: grid;
+    transition: all 0.3s linear;
+    margin-right: 1.5rem;
+    margin-left: 1.5rem;
+}
+
+.tempo-label {
+    margin-top: 1rem;
+    font-size: 25px;
+    color: #707070;
+}
+
+ul {
+
+    list-style-type: none;
+}
+
+.visualiser {
+
+    text-align: center;
+}
+
+.wrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: calc(100vh - 10rem);
+
+    padding: 2rem;
+
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+}
+
+@media only screen and (min-width: 992px) {
+    .container {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 2561px ) {
+    .dropdown-main {
+        padding-left: 85%;
+        margin-top: 0;
+    }
 }
 
 @media only screen and (max-width: 2560px ) {
@@ -386,4 +308,6 @@ nav {
         margin: 1.5rem 1rem 0 1rem;
     }
 }
+
+
 
