@@ -4,15 +4,15 @@ A React-based Metronome that takes button inputs to dictate BPM.
 
 To use: 
 
-- press the tap button `4 times` and a bpm will be assigned.
+- Press the tap button `4 times` and a bpm will be assigned.
 
-- press the play/pause button to start/stop the audio 
+- Press the play/pause button to start/stop the audio 
 
-- press the reset button to reset the bpm
+- Press the reset button to reset the bpm
 
-- the +- will alter the number of beats per measure
+- The +- will alter the number of beats per measure
 
-- the settings button will allow you to select different sounds
+- The settings button will allow you to select different sounds
 ___
 
 Requires `node`
