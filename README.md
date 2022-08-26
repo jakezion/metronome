@@ -40,3 +40,11 @@ ___
 
 
 ---
+
+Features to add:
+
+[] Slider for bpm
+[] Pallete Toggle button
+[] More Custom metronome noises
+
+---
