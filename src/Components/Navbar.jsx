@@ -5,7 +5,6 @@ import {FaDrum, FaGamepad, FaPlug} from "react-icons/fa";
 export default class Navbar extends React.Component {
     constructor(props) {
         super(props);
-        //TODO finish active button
     }
 
 
@@ -19,19 +18,19 @@ export default class Navbar extends React.Component {
                                           onClick={this.props.onClick}
                                           title="Beep"
                                           name="beep"
-                                          active={this.props.audioType === 1 ? "active-settings" : ""}
+                                          active={this.props.audioType === 1 ? "dropdown-active-button" : ""}
                             />
                             <DropdownItem icon={<FaGamepad className="icons button-icon"/>}
                                           onClick={this.props.onClick}
                                           title="8-Bit"
                                           name="bit"
-                                          active={this.props.audioType === 2 ? "active-settings" : ""}
+                                          active={this.props.audioType === 2 ? "dropdown-active-button" : ""}
                             />
                             <DropdownItem icon={<FaDrum className="icons button-icon"/>}
                                           onClick={this.props.onClick}
                                           title="Drum"
                                           name="drum"
-                                          active={this.props.audioType === 3 ? "active-settings" : ""}
+                                          active={this.props.audioType === 3 ? "dropdown-active-button" : ""}
                             />
 
                         </Dropdown>
@@ -46,7 +45,7 @@ export default class Navbar extends React.Component {
 function DropdownItem(props) {
     return (
         <div className="dropdown-item">
-            <button className="dropdown-item-button" name={props.name}
+            <button className={`dropdown-item-button ${props.active}`} name={props.name}
                     onClick={props.onClick}>{props.icon}&nbsp;&nbsp;{props.title}</button>
         </div>
     );
@@ -55,6 +54,7 @@ function DropdownItem(props) {
 function Dropdown(props) {
 
     const [open, setOpen] = useState(false);
+
 
     return (
         <>
