@@ -1,7 +1,6 @@
 # Metronome - Tap Tempo
 
-A React-based metronome that takes button inputs to dictate BPM.
-
+A React-based Metronome that takes button inputs to dictate BPM.
 
 ___
 
@@ -13,9 +12,11 @@ To install:
 
 2. Open the project and within the terminal enter: `npm install`
 
-3. To run the project enter: `npm run start`
+3. To build the project enter: `npm run build`
 
-(To build the project enter: `npm run build`)
+4. To run the project enter: `npm run start`
+
+
 
 ___
 
