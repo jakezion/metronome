@@ -16,10 +16,6 @@ a {
     color: var(--background-accent);
 }
 
-.active-settings {
-    background-color: #cccccc;
-}
-
 .bpm-value {
 
     text-align: center;
@@ -133,6 +129,11 @@ button:hover {
     border-radius: 0.2rem;
     height: 2.5rem;
     min-width: 90%;
+}
+
+.dropdown-active-button {
+
+    border: 0.15rem solid #525252;
 }
 
 .fill {
