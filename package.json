@@ -2,12 +2,12 @@
   "name": "metronome",
   "version": "1.0.0",
   "description": "A React-based metronome that takes button inputs to dictate BPM. ",
-  "source": "src/index.html",
+  "source": "public/index.html",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "start": "parcel",
-    "build": "parcel build src/index.html --public-url ."
+    "build": "parcel build public/index.html --public-url ."
   },
   "repository": {
     "type": "git",
