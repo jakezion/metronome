@@ -2,6 +2,7 @@
     --background: #fdf9f3;
     --background-accent: #3D3D3D;
     --settings-size: 3.75rem;
+    --accent-colour: #F9EDDC;
     --text-colour: #292929;
     --border: 0.06rem solid #525252;
     --border-radius: 0.5rem;
@@ -41,7 +42,7 @@ button {
 
 /*TODO change hover colour*/
 button:hover {
-    background-color: #F9EDDC;
+    background-color: var(--accent-colour);
 }
 
 .button-row {
@@ -123,7 +124,7 @@ button:hover {
 .dropdown-item-button {
 
     font-size: 1rem;
-    background-color: #F9EDDC;
+    background-color: var(--accent-colour);
     border: transparent;
     vertical-align: -2px;
     border-radius: 0.2rem;
